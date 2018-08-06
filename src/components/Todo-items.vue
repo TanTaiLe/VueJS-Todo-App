@@ -42,21 +42,22 @@
           this.doneList.splice(this.doneList.indexOf(e), 1);
 
           
-        let parsed = JSON.stringify(this.todoList);
-        localStorage.setItem('items', parsed);
+        let savedItems = JSON.stringify(this.todoList);
+        localStorage.setItem('items', savedItems);
       },
 
       /**
        * Check done todo
        */
       checkDoneContent: function(e) {
-        if(e.completed == false)
+        if(e.completed == false) {
           this.doneList.push({id: e.id, content: e.content});
-        else
+        } else {
           this.doneList.splice(this.doneList.indexOf(e), 1);
+        } 
 
-        let parsed = JSON.stringify(this.doneList);
-        localStorage.setItem('doneItems', parsed);
+        let savedDoneItems = JSON.stringify(this.doneList);
+        localStorage.setItem('doneItems', savedDoneItems);
       }
     }
   }

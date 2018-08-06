@@ -88,10 +88,10 @@
       removeAllContent: function() {
         this.items = [];
         this.doneItems = [];
-        let parsed1 = JSON.stringify(this.items);
-        localStorage.setItem('items', parsed1);
-        let parsed2 = JSON.stringify(this.doneItems);
-        localStorage.setItem('doneItems', parsed2);
+        let savedItems = JSON.stringify(this.items);
+        localStorage.setItem('items', savedItems);
+        let savedDoneItems = JSON.stringify(this.doneItems);
+        localStorage.setItem('doneItems', savedDoneItems);
       },
 
     }
