@@ -1,0 +1,30 @@
+.done {
+  text-decoration: line-through;
+  position: relative;
+  &::after {
+    position: absolute;
+    content: "";
+    height: 1px;
+    width: 85%;
+    left: 15%;
+    background: #212529;
+  }
+}
+
+.item {
+  margin-left: -0.5em;
+  border-color: transparent;
+  cursor: default;
+}
+
+.index {
+  margin-left: 10px;
+}
+
+.custom-control-label {
+  &::after, &::before {
+    top: 0;
+    width: 1.5em;
+    height: 1.5em;
+  }
+}
