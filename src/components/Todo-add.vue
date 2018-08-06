@@ -26,6 +26,8 @@
         if(this.newTodo != "") {
           this.todoList.push({id: this.todoList.length+1, content: this.newTodo, completed: false, edit: false});
           this.newTodo = "";
+          let parsed = JSON.stringify(this.todoList);
+          localStorage.setItem('items', parsed);
         } else {
           alert("Không được để trống công việc!");
         }

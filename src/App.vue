@@ -16,12 +16,10 @@
               Chưa có công việc nào.
             </h5>
             
-            <b-list-group class="mt-3">
 
-              <!-- Việc mới sau khi thêm sẽ được hiển thị ở đây -->
-              <TodoItem :todoList="items" :todo="item" :doneList="doneItems"/>
+            <!-- Việc mới sau khi thêm sẽ được hiển thị ở đây -->
+            <TodoItems :todoList="items" :todo="item" :doneList="doneItems"/>
               
-            </b-list-group>
 
             <!-- Thêm việc mới ở đây -->
             <TodoAdd :todoList="items" :newTodo="newItem" />
@@ -38,26 +36,40 @@
 </template>
 
 <script>
-  import TodoItem from './components/Todo-item.vue'
+  import TodoItems from './components/Todo-items.vue'
   import TodoAdd from './components/Todo-add.vue'
   import Vue from 'vue'
   import BootstrapVue from "bootstrap-vue"
   import "bootstrap/dist/css/bootstrap.min.css"
   import "bootstrap-vue/dist/bootstrap-vue.css"
+  import VueLocalStorage from 'vue-localstorage'
 
   Vue.use(BootstrapVue)
+  Vue.use(VueLocalStorage, {
+    name: 'ls',
+    bind: true
+  })
 
   export default {
     name: 'app',
     components: {
-      TodoItem,
+      TodoItems,
       TodoAdd,
     },
-    data: function () {
+    data() {
       return {
         items: [],
         doneItems: [],
         newItem: "",
+      }
+    },
+    mounted() {
+      if(localStorage.getItem('items')) {
+        try {
+          this.cats = JSON.parse(localStorage.getItem('items'));
+        } catch(e) {
+          localStorage.removeItem('items');
+        }
       }
     },
     methods: {
@@ -68,6 +80,8 @@
       removeAllContent: function() {
         this.items = [];
         this.doneItems = [];
+        let parsed = JSON.stringify(this.items);
+        localStorage.setItem('items', parsed);
       },
 
     }
