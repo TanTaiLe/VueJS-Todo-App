@@ -54,6 +54,9 @@
           this.doneList.push({id: e.id, content: e.content});
         else
           this.doneList.splice(this.doneList.indexOf(e), 1);
+
+        let parsed = JSON.stringify(this.doneList);
+        localStorage.setItem('doneItems', parsed);
       }
     }
   }

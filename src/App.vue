@@ -66,9 +66,17 @@
     mounted() {
       if(localStorage.getItem('items')) {
         try {
-          this.cats = JSON.parse(localStorage.getItem('items'));
+          this.items = JSON.parse(localStorage.getItem('items'));
         } catch(e) {
           localStorage.removeItem('items');
+        }
+      }
+
+      if(localStorage.getItem('doneItems')) {
+        try {
+          this.doneItems = JSON.parse(localStorage.getItem('doneItems'));
+        } catch(e) {
+          localStorage.removeItem('doneItems');
         }
       }
     },
@@ -80,8 +88,10 @@
       removeAllContent: function() {
         this.items = [];
         this.doneItems = [];
-        let parsed = JSON.stringify(this.items);
-        localStorage.setItem('items', parsed);
+        let parsed1 = JSON.stringify(this.items);
+        localStorage.setItem('items', parsed1);
+        let parsed2 = JSON.stringify(this.doneItems);
+        localStorage.setItem('doneItems', parsed2);
       },
 
     }
